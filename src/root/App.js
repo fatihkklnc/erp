@@ -1,20 +1,13 @@
 
 
+import Home from './Home';
+import {HomeProvider} from '../providers/HomeContext';
 
-import React from 'react';
-
-
-import Dashboard from './Dashboard';
 function App() {
-  
-  
   return (
-    
-      <Dashboard>
-
-      </Dashboard>
-      
-    
+    <HomeProvider>
+      <Home></Home>
+    </HomeProvider>
     
   );
 }
