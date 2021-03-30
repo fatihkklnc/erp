@@ -46,7 +46,7 @@
     font-weight: 500;
     margin-bottom: 30px;
   }
-  .form .form-inner .form-group{
+  .form .form-inner .form-group {
     display: block;
     width: 300px;
     margin-bottom: 15px;
@@ -69,7 +69,7 @@
     border-radius: 8px;
     transition: 0.4s;
   }
-  .form .form-inner .form-group input:focus{
+  .form .form-inner .form-group input:focus {
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
   }
   .form .form-inner input[type="submit"],
@@ -107,3 +107,26 @@
     color: #FE4880;
     font-weight: 700;
   }
+  .select {
+    
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 5px 15px;
+    margin-bottom: 15px;
+    width: 300px;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    display: block;
+    color: #666;
+    transition: 0.4s;
+  }
+  .select::after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: var(--select-arrow);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  }
+  
