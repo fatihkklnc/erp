@@ -1,13 +1,16 @@
 import React, { useState,useContext,useEffect } from 'react'
+import axios from 'axios'
 import {HomeContext} from '../providers/HomeContext'
-function LoginForm() {
-
-    const {Login,error,adminUser}=useContext(HomeContext);
+const LoginForm=()=> {
+    
+    const {Login,error,adminUser,state}=useContext(HomeContext);
 
     const [details,setDetails]=useState({name:"",password:"",companyNo:""})
     const [stateFirma,setStateFirma]=useState(false)
     const [stateCompany,setStateCompany]=useState(false)
+    //TODO:inputlardan gelen veri kontrolü arrow ile 
     useEffect(() => {
+        
         if(adminUser.name == details.name && adminUser.password==details.password)
         setStateFirma(true)
         else
@@ -16,8 +19,17 @@ function LoginForm() {
         setStateCompany(true)
         else
         setStateCompany(false)
+        
     }, [details])
-    
+    //TODO:state den gelen veri
+    useEffect(() => {
+        dene();
+    }, [])
+
+    const dene =()=>{
+        console.log(state)
+        
+    }
     const handleChance=(event)=>{
         
         let name=event.target.name;
@@ -25,13 +37,15 @@ function LoginForm() {
         setDetails({...details,[name]:value})
         
     }
-    const submitHandler=e=>{
-        e.preventDefault();
+    const submitHandler=event=>{
+        event.preventDefault();
         Login(details);
     }
     
     return (
+        
         <form onSubmit={submitHandler} className="form">
+            
             <div className="form-inner">
                 <h2>Login</h2>
                 {(error!="")?<div>{error}</div>:""}

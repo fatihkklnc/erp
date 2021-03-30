@@ -2,16 +2,34 @@ import React,{createContext,useEffect,useState} from 'react'
 import axios from 'axios'
 export const HomeContext=createContext();
  export const HomeProvider =(props)=> {
+   
   const adminUser = {
     name: "fatih",
     password: "123",
     companyNo:1234
   };
+  
      
-    
+  const [state,setstate]=useState([])//gelen verinin kayıt yeri
       const [user, setUser] = useState({ name: "", password: "",companyNo:"" });
       const [error, setError] = useState("");
+      //TODO:users verileri
+      useEffect(() => {
     
+        axios
+        .get(' http://localhost:3000/logo')
+        .then((Response) => {
+          //axios ile json verisi çekildi
+          setstate( Response.data ); 
+          
+        })
+        .catch((error) => {
+          if (Error) alert("veri gelmedi"); //error durumuna düştüğü zaman
+          console.log(error);
+        });
+        
+      
+    }, [])
       const Login = (details) => {
         console.log(details);
         if (
@@ -39,7 +57,8 @@ export const HomeContext=createContext();
         error:error,
         Login:Login,
         Logout:Logout,
-        adminUser:adminUser
+        adminUser:adminUser,
+        state:state
         
 
       }
