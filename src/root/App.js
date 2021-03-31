@@ -1,13 +1,16 @@
 
 
 import Home from './Home';
-import {HomeProvider} from '../providers/HomeContext';
+import HomeProvider from '../providers/HomeContext';
 
 function App() {
   return (
+    <div>
     <HomeProvider>
       <Home></Home>
-    </HomeProvider>
+    </HomeProvider>  
+    </div>
+    
     
   );
 }

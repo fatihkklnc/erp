@@ -23,13 +23,16 @@ const LoginForm=()=> {
     }, [details])
     //TODO:state den gelen veri
     useEffect(() => {
-        dene();
+
+      const dene =()=>{
+        console.log(state)   
+
+    }  
+    dene();
+
     }, [])
 
-    const dene =()=>{
-        console.log(state)
-        
-    }
+    
     const handleChance=(event)=>{
         
         let name=event.target.name;
@@ -77,4 +80,4 @@ const LoginForm=()=> {
     )
 }
 
-export default LoginForm
+export default LoginForm;

@@ -2,6 +2,7 @@ import React,{useState,useContext} from 'react'
 import LoginForm from '../components/LoginForm'
 import {HomeContext} from '../providers/HomeContext';
  function Home() {
+   
     const {user,Logout}= useContext(HomeContext);
       return (
         <div className="App">

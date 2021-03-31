@@ -1,7 +1,7 @@
 import React,{createContext,useEffect,useState} from 'react'
 import axios from 'axios'
 export const HomeContext=createContext();
- export const HomeProvider =(props)=> {
+ const HomeProvider=(props)=> {
    
   const adminUser = {
     name: "fatih",
@@ -15,21 +15,26 @@ export const HomeContext=createContext();
       const [error, setError] = useState("");
       //TODO:users verileri
       useEffect(() => {
-    
-        axios
-        .get(' http://localhost:3000/logo')
-        .then((Response) => {
-          //axios ile json verisi çekildi
-          setstate( Response.data ); 
-          
-        })
-        .catch((error) => {
-          if (Error) alert("veri gelmedi"); //error durumuna düştüğü zaman
-          console.log(error);
-        });
+        axiosData(); 
+        async function axiosData (){
+          axios
+            .get(' http://localhost:3000/logo')
+            .then((Response) => {
+              //axios ile json verisi çekildi
+              setstate( Response.data ); 
+              
+            })
+            .catch((error) => {
+              if (Error) alert("veri gelmedi"); //error durumuna düştüğü zaman
+              console.log(error);
+            });
+        }
         
+
+       
       
-    }, [])
+    },[])
+    
       const Login = (details) => {
         console.log(details);
         if (
@@ -69,4 +74,5 @@ export const HomeContext=createContext();
         </HomeContext.Provider>
     )
 }
+export default HomeProvider;
 
