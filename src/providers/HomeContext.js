@@ -6,41 +6,40 @@ export const HomeContext=createContext();
   const adminUser = {
     name: "fatih",
     password: "123",
-    companyNo:1234
+    companyNo:"1234"
   };
-  
+  const [state,setstate]=useState({users:[]})//gelen verinin kayıt yeri
+    useEffect(() => {
+        
+      async function axiosData (){
+        axios
+          .get('http://localhost:3000/logo')
+          .then((Response) => {
+            //axios ile json verisi çekildi
+            setstate({users:Response.data }); 
+            
+          })
+          .catch((error) => {
+            if (Error) alert("veri gelmedi"); //error durumuna düştüğü zaman
+            console.log(error);
+          });
+      }
+      
+    axiosData(); 
+  },[])
      
-  const [state,setstate]=useState([])//gelen verinin kayıt yeri
+ 
       const [user, setUser] = useState({ name: "", password: "",companyNo:"" });
       const [error, setError] = useState("");
       //TODO:users verileri
-      useEffect(() => {
-        axiosData(); 
-        async function axiosData (){
-          axios
-            .get(' http://localhost:3000/logo')
-            .then((Response) => {
-              //axios ile json verisi çekildi
-              setstate( Response.data ); 
-              
-            })
-            .catch((error) => {
-              if (Error) alert("veri gelmedi"); //error durumuna düştüğü zaman
-              console.log(error);
-            });
-        }
-        
-
-       
       
-    },[])
     
       const Login = (details) => {
         console.log(details);
         if (
-          details.password == adminUser.password &&
-          details.name == adminUser.name &&
-          details.companyNo== adminUser.companyNo
+          details.password === adminUser.password &&
+          details.name === adminUser.name &&
+          details.companyNo=== adminUser.companyNo
         ) {
           setError("")
           console.log("giriş başarılı");

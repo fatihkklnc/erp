@@ -1,36 +1,27 @@
 import React, { useState,useContext,useEffect } from 'react'
 import axios from 'axios'
 import {HomeContext} from '../providers/HomeContext'
-const LoginForm=()=> {
+
+
+const LoginForm=(props)=> {
     
     const {Login,error,adminUser,state}=useContext(HomeContext);
-
-    const [details,setDetails]=useState({name:"",password:"",companyNo:""})
-    const [stateFirma,setStateFirma]=useState(false)
+    
+    const [details,setDetails]=useState({name:"",password:"",companyNo:"",session:""})
     const [stateCompany,setStateCompany]=useState(false)
+    
     //TODO:inputlardan gelen veri kontrolü arrow ile 
+    
     useEffect(() => {
         
-        if(adminUser.name == details.name && adminUser.password==details.password)
-        setStateFirma(true)
-        else
-        setStateFirma(false)
-        if(adminUser.name == details.name && adminUser.password==details.password && adminUser.companyNo==details.companyNo)
-        setStateCompany(true)
-        else
-        setStateCompany(false)
-        
+                    
+                    
+       
+
     }, [details])
+   
     //TODO:state den gelen veri
-    useEffect(() => {
-
-      const dene =()=>{
-        console.log(state)   
-
-    }  
-    dene();
-
-    }, [])
+    
 
     
     const handleChance=(event)=>{
@@ -44,10 +35,10 @@ const LoginForm=()=> {
         event.preventDefault();
         Login(details);
     }
-    
-    return (
         
-        <form onSubmit={submitHandler} className="form">
+    return  (
+        <div>
+            <form onSubmit={submitHandler} className="form">
             
             <div className="form-inner">
                 <h2>Login</h2>
@@ -61,22 +52,34 @@ const LoginForm=()=> {
                     <label htmlFor="password">Password:</label>
                     <input type="password" name="password" id="password" onChange={handleChance}></input>
                 </div>
-                {(stateFirma)?//girilen kuladı şifreye göre firma no aktif in aktif durumu kontrolü
-                  <div className="form-group">
+               {(stateCompany)?
+                   <div className="form-group">
                   <label htmlFor="companyNo">CompanyNo:</label>
                   <input type="number" name="companyNo" id="companyNo" onChange={handleChance}></input>
-                 </div>:null
-                }
-                {(stateCompany)?
+                 </div>
+                :""
+               }
+                
+                  
+                
+                
                 <div className="form-group">
                     <label htmlFor="session">Session:</label>
                     <input type="number" name="session" id="session" onChange={handleChance}></input>
-                </div>:null
-                }
+                </div>
+                
                 
                 <input type="submit" value="Submit"></input>
             </div>
         </form>
+        {state.users.map((user)=>
+        <h4 key={user.id}>{(user.Name==details.name)?setStateCompany(true):setStateCompany(false)}</h4>
+        )
+        
+        }
+        </div>
+        
+
     )
 }
 
