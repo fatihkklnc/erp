@@ -46,6 +46,7 @@ function Home() {
             Welcome<span>{user.name}</span>
           </h2>
           <button onClick={Logout}>logout</button>
+          
         </div>
       ) : (
         <LoginForm Login={Login} error={error} />

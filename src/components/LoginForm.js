@@ -13,7 +13,7 @@ const LoginForm = ({ Login, error }) => {
         session: "",
     });
     const [stateCompany, setStateCompany] = useState(false);
-    const [stateFirma, setStateFirma] = useState(false);
+    const [stateSession,setStateSession] = useState(false);
 
 
 
@@ -24,20 +24,20 @@ const LoginForm = ({ Login, error }) => {
                     user.Name == details.name  &&
                     user.password == details.password
                 )
-                    setStateFirma(true);
-                else if (user.Name !== details.name &&
-                    user.password !== details.password)
-                    setStateFirma(false);
-                if (
+                    setStateCompany(true);
+                
+                    
+                    
+                 if (
                     user.Name == details.name  &&
                     user.password == details.password &&
                     user.companyNo  == details.companyNo
                 )
-                    setStateCompany(true);
-                else if(user.Name !== details.name &&
-                    user.password !== details.password &&
-                    user.companyNo !== details.companyNo)
-                    setStateCompany(false);
+                 setStateSession(true); 
+                
+                    
+                
+                
 
             }
 
@@ -85,7 +85,7 @@ const LoginForm = ({ Login, error }) => {
                             onChange={handleChance}
                         ></input>
                     </div>
-                    {stateFirma ? (
+                    {stateCompany? (
                         <div className="form-group">
                             <label htmlFor="companyNo">CompanyNo:</label>
                             <input
@@ -95,11 +95,11 @@ const LoginForm = ({ Login, error }) => {
                                 onChange={handleChance}
                             ></input>
                         </div>
-                    ) : (
-                        ""
-                    )}
+                    ) :""
+                        
+                    }
 
-                    {stateCompany ? (
+                    {stateSession? (
                         <div className="form-group">
                             <label htmlFor="session">Session:</label>
                             <input
@@ -109,9 +109,9 @@ const LoginForm = ({ Login, error }) => {
                                 onChange={handleChance}
                             ></input>
                         </div>
-                    ) : (
-                        ""
-                    )}
+                    )  :""
+                        
+                    }
 
                     <input type="submit" value="Submit"></input>
                 </div>
