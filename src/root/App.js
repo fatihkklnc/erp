@@ -1,15 +1,18 @@
 
 
+import AppProvider from '../context/AppContext';
 import Home from './Home';
-import HomeProvider from '../providers/HomeContext';
+
 
 function App() {
   return (
-    <div>
-    <HomeProvider>
-      <Home></Home>
-    </HomeProvider>  
-    </div>
+    
+    <AppProvider>
+     <Home></Home> 
+    </AppProvider>
+      
+    
+    
     
     
   );

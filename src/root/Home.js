@@ -1,10 +1,39 @@
 import React,{ useState,useContext,useEffect } from 'react'
 import LoginForm from '../components/LoginForm'
-import {HomeContext} from '../providers/HomeContext';
+import {AppContext} from "../context/AppContext";
 import axios from 'axios'
  function Home() {
-   
-    const {user,Logout}= useContext(HomeContext);
+    
+    const [error, setError] = useState("");
+    
+    const {state,Logout,setUser,user}=useContext(AppContext);
+
+    
+    const Login = (details) => {
+      
+      if(state.length){
+        console.log(state[0].companyNo)
+      if (
+        details.password == state[0].password &&
+        details.name == state[0].Name &&
+        details.companyNo==state[0].companyNo
+
+      ) {
+        setError("")
+        console.log("giriş başarılı");
+        setUser({
+          name: details.name,
+          password: details.password,
+          companyNo:details.companyNo
+        });
+      } else {
+        console.log("tekrar dene");
+        setError("tekrar dene")
+      }
+    }
+    };
+    
+
     
       return (
         <div className="App">
@@ -16,7 +45,7 @@ import axios from 'axios'
               <button onClick={Logout}>logout</button>
             </div>
           ) : (
-            <LoginForm />
+            <LoginForm Login={Login} error={error} />
           )}
         </div>
       );
