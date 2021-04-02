@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import {AppContext} from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 
 
-const LoginForm = ({Login,error}) => {
-    const {state}=useContext(AppContext);
+const LoginForm = ({ Login, error }) => {
+    const { state } = useContext(AppContext);
 
     const [details, setDetails] = useState({
         name: "",
@@ -15,28 +15,40 @@ const LoginForm = ({Login,error}) => {
     const [stateCompany, setStateCompany] = useState(false);
     const [stateFirma, setStateFirma] = useState(false);
 
-    
+
 
     useEffect(() => {
-        if(state.length){
-        if (
-            state[0].Name == details.name &&
-            state[0].password == details.password
-        )
-            setStateFirma(true);
-        else setStateFirma(false);
-        if (
-            state[0].Name == details.name &&
-            state[0].password == details.password &&
-            state[0].companyNo == details.companyNo
-        )
-            setStateCompany(true);
-        else setStateCompany(false);
+        if (state.length) {
+            state.map((user) => {
+                if (
+                    user.Name == details.name  &&
+                    user.password == details.password
+                )
+                    setStateFirma(true);
+                else if (user.Name !== details.name &&
+                    user.password !== details.password)
+                    setStateFirma(false);
+                if (
+                    user.Name == details.name  &&
+                    user.password == details.password &&
+                    user.companyNo  == details.companyNo
+                )
+                    setStateCompany(true);
+                else if(user.Name !== details.name &&
+                    user.password !== details.password &&
+                    user.companyNo !== details.companyNo)
+                    setStateCompany(false);
+
+            }
+
+            )
+
+
         }
-        
+
     }, [details]);
 
-    
+
 
     const handleChance = (event) => {
         let name = event.target.name;
